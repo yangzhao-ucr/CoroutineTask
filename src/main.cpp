@@ -2,19 +2,20 @@
 
 #include "coroutine_task.h"
 
-using namespace std;
+using namespace coroutine_task;
 
-static const char *const HEADER = "\nDivider © 2018 Monkey Claps Inc.\n\n";
-static const char *const USAGE = "Usage:\n\tdivider <numerator> <denominator>\n\nDescription:\n\tComputes the result of a fractional division,\n\tand reports both the result and the remainder.\n";
+static const char *const HEADER = "Coroutine Task © 2023 Yang Zhao yangzhao.ucr@gmail.com.\n\n";
+static const char *const USAGE = "Usage:\n\tcoroutine_main\n";
 
 int main(int argc, const char *argv[]) {
-  cout << HEADER;
+  std::cout << HEADER;
+
+  Coroutine_Task task;
 
   // ensure the correct number of parameters are used.
   if (argc < 3) {
-    cout << USAGE;
+    std::cout << USAGE;
     return 1;
   }
-  Corountine_Task task;
   return 0;
 }

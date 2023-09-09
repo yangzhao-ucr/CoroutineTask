@@ -3,9 +3,15 @@
 
 #include <coroutine>
 
-class Corountine_Task
+namespace coroutine_task
 {
+    class Coroutine_Task
+    {
+        int i;
 
-};
+    public:
+        Coroutine_Task();
+    };
+}
 
 #endif

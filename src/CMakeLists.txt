@@ -1,9 +1,18 @@
 cmake_minimum_required(VERSION 3.2)
-project(divider)
+# project(coroutinetask_main)
+# add_subdirectory(coroutinetask)
 
-add_subdirectory(division)
-set(SOURCE_FILES main.cpp)
+project(coroutine_task)
 
-add_executable(divider ${SOURCE_FILES})
-target_link_libraries(divider division)
-install(TARGETS divider DESTINATION ${DIVISIBLE_INSTALL_BIN_DIR})
+set(SOURCE_FILES    
+    coroutinetask/coroutine_task.cpp
+)
+
+add_library(coroutine_task SHARED STATIC ${SOURCE_FILES})
+install(TARGETS coroutine_task DESTINATION ${DIVISIBLE_INSTALL_LIB_DIR})
+
+# dummy exe
+set(EXE_SOURCE_FILES main.cpp)
+add_executable(coroutinetask_main ${EXE_SOURCE_FILES})
+target_link_libraries(coroutinetask_main coroutine_task)
+
