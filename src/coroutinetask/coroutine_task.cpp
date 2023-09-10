@@ -4,5 +4,4 @@
 
 namespace coroutine_task
 {
-    Coroutine_Task::Coroutine_Task() : i(0) {};
 }
