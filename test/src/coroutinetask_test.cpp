@@ -1,21 +1,20 @@
-//
-// Created by Konstantin Gredeskoul on 5/16/17.
-//
-#include <division.h>
+#include "coroutine_task.h"
+
 #include "gtest/gtest.h"
 
 using namespace std;
 
-
-#define VI vector<long long>
-
-class DividerTest : public ::testing::Test {
+class CoroutineTask_Test : public ::testing::Test {
 
 protected:
-  VI numerators   = {5, 9, 17, 933345453464353416L};
-  VI denominators = {2, 3, 19, 978737423423423499L};
-  VI divisions    = {2, 3, 0, 0};
-  VI remainders   = {1, 0, 17, 933345453464353416};
+  coroutine_task::Coroutine_Task<int> func1_ut(int i)
+  {
+    if(i<=0) co_return 0;
+    // cout << "i = " << i <<endl;
+    int r = i+ (co_await func1_ut(i-1));
+    // cout << "r = " << i <<endl;
+    co_return r;
+  }
 
   virtual void SetUp() {
   };
@@ -23,27 +22,14 @@ protected:
   virtual void TearDown() {
   };
 
-  virtual void verify(int index) {
-    EXPECT_EQ(1,1);
+  virtual void verify(int expected, int actual) {
+    EXPECT_EQ(expected, actual);
   }
 };
 
-TEST_F(DividerTest, Case1) {
-  verify(0);
+TEST_F(CoroutineTask_Test, recursive_down) 
+{
+  auto t = func1_ut(10);
+  t.Resume(); 
+  verify(t.GetReturnValue(), 55);
 }
-
-TEST_F(DividerTest, Case2) {
-  verify(1);
-}
-
-TEST_F(DividerTest, Case3) {
-  verify(2);
-}
-
-TEST_F(DividerTest, Case4) {
-  verify(3);
-}
-
-TEST_F(DividerTest, Case5) {
-}
-
