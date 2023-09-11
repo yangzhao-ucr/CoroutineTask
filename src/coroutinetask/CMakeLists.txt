@@ -7,5 +7,5 @@ set(SOURCE_FILES
 
 add_library(coroutine_task SHARED STATIC ${SOURCE_FILES})
 
-install(TARGETS coroutine_task DESTINATION ${DIVISIBLE_INSTALL_LIB_DIR})
+install(TARGETS coroutine_task DESTINATION ${COROUTINE_TASK_INSTALL_LIB_DIR})
 
