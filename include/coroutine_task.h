@@ -5,6 +5,8 @@
 
 namespace coroutine_task
 {
+    /// @brief Generic return type for C++20 coroutine.
+    /// @tparam T : return value type.
     template<class T>
     class Coroutine_Task
     {
@@ -17,7 +19,7 @@ namespace coroutine_task
         {
             T _result;
             
-            handle _next = nullptr;
+            std::coroutine_handle<> _next = nullptr;
             Coroutine_Task get_return_object()
             {
                 return Coroutine_Task<T>(handle::from_promise(*this));
@@ -46,7 +48,7 @@ namespace coroutine_task
 
         /// awaitable interface
         bool await_ready() { return false; }
-        void await_suspend(handle h) { 
+        void await_suspend(std::coroutine_handle<> h) { 
             _h.promise()._next = h;
             // TODO: real work
             _h.resume();

@@ -12,7 +12,7 @@ Coroutine_Task<int> Task1()
 
 Template type is the type of the return value. 
 
-`Coroutine_Task` is also an awaitable type, which allows a coroutine to co_await another coroutine of the same type:
+`Coroutine_Task` is also an awaitable type, which allows a coroutine task to co_await another coroutine task:
 ```
 Coroutine_Task<int> Task2()
 {
@@ -26,6 +26,5 @@ The behavior of co_await here is:
 - after the caller coroutine returned (completed the co_return statement), the execution would be jumped back to the caller.
 
 TODO:
-- The generic return type, so one coroutine task could co_await any other coroutine task.
 - More flexiable scheduling between coroutine task.
 - More flexiable multi-thread model.

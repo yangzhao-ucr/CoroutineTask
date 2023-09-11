@@ -32,7 +32,7 @@ Coroutine_Task<std::string> TaskStr()
 
 Coroutine_Task<int> Task3()
 {
-    int r = co_await Task1() + co_await Task2();
+    int r = co_await Task1() + (co_await TaskStr()).length();
     co_return r;
 }
 
